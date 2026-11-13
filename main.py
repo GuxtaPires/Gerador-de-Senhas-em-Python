@@ -13,13 +13,23 @@ caracteres = (
     string.punctuation
 )
 
-# Solicitando o tamanho da senha ao usuário
-tamanho = int(input("\nQuantos caracteres sua senha deve ter? "))
-# Gerando a senha
-senha = ""
+# Solicitando o tamanho da senha
+try:
+    tamanho = int(input("\nQuantos caracteres sua senha deve ter? "))
 
-for i in range(tamanho):
-    senha += secrets.choice(caracteres)
+    # Validando o tamanho informado
+    if tamanho < 1 or tamanho > 128:
+        print("\nErro: escolha um tamanho entre 1 e 128.")
 
-# Exibindo o resultado
-print(f"\nSua senha gerada foi: {senha}")
+    else:
+        # Gerando a senha
+        senha = ""
+
+        for i in range(tamanho):
+            senha += secrets.choice(caracteres)
+
+        # Exibindo o resultado
+        print(f"\nSua senha gerada foi: {senha}")
+
+except ValueError:
+    print("\nErro: você precisa digitar um número inteiro!")
