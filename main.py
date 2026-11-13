@@ -13,9 +13,8 @@ caracteres = (
     string.punctuation
 )
 
-# Definindo o tamanho da senha
-tamanho = 12
-
+# Solicitando o tamanho da senha ao usuário
+tamanho = int(input("\nQuantos caracteres sua senha deve ter? "))
 # Gerando a senha
 senha = ""
 
