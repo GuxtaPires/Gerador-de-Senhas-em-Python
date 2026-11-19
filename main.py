@@ -22,14 +22,39 @@ try:
         print("\nErro: escolha um tamanho entre 1 e 128.")
 
     else:
-        # Gerando a senha
-        senha = ""
+        # Perguntando quais caracteres utilizar
+        usar_minusculas = input("Incluir letras minúsculas? (s/n): ").lower()
+        usar_maiusculas = input("Incluir letras maiúsculas? (s/n): ").lower()
+        usar_numeros = input("Incluir números? (s/n): ").lower()
+        usar_simbolos = input("Incluir símbolos? (s/n): ").lower()
 
-        for i in range(tamanho):
-            senha += secrets.choice(caracteres)
+        # Criando o conjunto de caracteres
+        caracteres = ""
 
-        # Exibindo o resultado
-        print(f"\nSua senha gerada foi: {senha}")
+        if usar_minusculas == "s":
+            caracteres += string.ascii_lowercase
+
+        if usar_maiusculas == "s":
+            caracteres += string.ascii_uppercase
+
+        if usar_numeros == "s":
+            caracteres += string.digits
+
+        if usar_simbolos == "s":
+            caracteres += string.punctuation
+
+        # Verificando se alguma categoria foi selecionada
+        if caracteres == "":
+            print("Erro: selecione pelo menos uma categoria!")
+
+        else:
+            # Gerando a senha
+            senha = ""
+
+            for i in range(tamanho):
+                senha += secrets.choice(caracteres)
+
+            print(f"\nSua senha gerada foi: {senha}")
 
 except ValueError:
-    print("\nErro: você precisa digitar um número inteiro!")
+    print("\nErro: você precisa digitar um número inteiro!")  
